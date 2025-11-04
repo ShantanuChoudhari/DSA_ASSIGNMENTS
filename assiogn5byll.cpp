@@ -1,144 +1,101 @@
 #include <iostream>
-#include <string>
-
 using namespace std;
 
-class Patient {
-public:
-    string name;
+// Node structure for the linked list
+struct Node {
+    int data;
     int priority;
-    Patient* next;
-
-    Patient(string n, int p) : name(n), priority(p), next(nullptr) {}
-
-    void display() const {
-        cout << name << " (Priority: " << priority << ")" << endl;
-    }
+    Node* next;
 };
 
-class HospitalPriorityQueue {
+// Class for Priority Queue
+class PriorityQueue {
 private:
-    Patient* head;
+    Node* front;
 
 public:
-    HospitalPriorityQueue() : head(nullptr) {}
+    PriorityQueue() {
+        front = nullptr;
+    }
 
-    // Add patient at end (unsorted)
-    void addPatient(const string& name, int priority) {
-        Patient* newPatient = new Patient(name, priority);
-        if (!head) {
-            head = newPatient;
+    // Function to insert an element into the priority queue
+    void push(int data, int priority) {
+        Node* newNode = new Node();
+        newNode->data = data;
+        newNode->priority = priority;
+        newNode->next = nullptr;
+
+        // If the queue is empty or new node has higher priority than front
+        if (front == nullptr || priority > front->priority) {
+            newNode->next = front;
+            front = newNode;
         } else {
-            Patient* temp = head;
-            while (temp->next) {
+            // Traverse and find the position to insert
+            Node* temp = front;
+            while (temp->next != nullptr && temp->next->priority >= priority) {
                 temp = temp->next;
             }
-            temp->next = newPatient;
+            newNode->next = temp->next;
+            temp->next = newNode;
         }
-        cout << "Patient added successfully.\n";
     }
 
-    // Find and treat highest priority patient
-    Patient* treatPatient() {
-        if (!head) {
-            cout << "No patients to treat.\n";
-            return nullptr;
-        }
-
-        Patient* current = head;
-        Patient* highestPriorityPatient = head;
-        Patient* prev = nullptr;
-        Patient* prevHighest = nullptr;
-
-        // Traverse to find highest priority and keep track of previous nodes
-        while (current != nullptr) {
-            if (current->priority > highestPriorityPatient->priority) {
-                highestPriorityPatient = current;
-                prevHighest = prev;
-            }
-            prev = current;
-            current = current->next;
-        }
-
-        // Remove highestPriorityPatient from list
-        if (prevHighest == nullptr) {
-            // highest priority patient is at head
-            head = head->next;
-        } else {
-            prevHighest->next = highestPriorityPatient->next;
-        }
-        highestPriorityPatient->next = nullptr; // disconnect from list
-        return highestPriorityPatient;
-    }
-
-    void showAllPatients() const {
-        if (!head) {
-            cout << "No patients in queue.\n";
+    // Remove the highest priority element
+    void pop() {
+        if (front == nullptr) {
+            cout << "Priority Queue is empty.\n";
             return;
         }
-        cout << "Current Patients in Queue:\n";
-        Patient* temp = head;
-        while (temp) {
-            temp->display();
-            temp = temp->next;
-        }
+
+        Node* temp = front;
+        front = front->next;
+        delete temp;
     }
 
-    ~HospitalPriorityQueue() {
-        // Cleanup memory
-        Patient* temp;
-        while (head) {
-            temp = head;
-            head = head->next;
-            delete temp;
+    // Peek at the element with highest priority
+    int peek() {
+        if (front == nullptr) {
+            cout << "Priority Queue is empty.\n";
+            return -1;
         }
+        return front->data;
+    }
+
+    // Check if queue is empty
+    bool isEmpty() {
+        return front == nullptr;
+    }
+
+    // Display queue (for debugging)
+    void display() {
+        Node* temp = front;
+        cout << "Priority Queue: ";
+        while (temp != nullptr) {
+            cout << "(" << temp->data << ", p=" << temp->priority << ") ";
+            temp = temp->next;
+        }
+        cout << endl;
     }
 };
 
+// Driver code
 int main() {
-    HospitalPriorityQueue hospitalQueue;
-    int choice;
+    PriorityQueue pq;
 
-    do {
-        cout << "\nHospital Management System Menu:\n";
-        cout << "1. Add Patient\n";
-        cout << "2. Treat Patient\n";
-        cout << "3. Show All Patients\n";
-        cout << "4. Exit\n";
-        cout << "Enter your choice: ";
-        cin >> choice;
+    pq.push(10, 2);
+    pq.push(5, 1);
+    pq.push(20, 3);
+    pq.push(15, 2);
 
-        switch (choice) {
-            case 1: {
-                string name;
-                int priority;
-                cout << "Enter patient name: ";
-                cin >> ws; // consume whitespace
-                getline(cin, name);
-                cout << "Enter patient priority (higher number = higher priority): ";
-                cin >> priority;
-                hospitalQueue.addPatient(name, priority);
-                break;
-            }
-            case 2: {
-                Patient* treated = hospitalQueue.treatPatient();
-                if (treated) {
-                    cout << "Treating patient: ";
-                    treated->display();
-                    delete treated;  // free memory after treating
-                }
-                break;
-            }
-            case 3:
-                hospitalQueue.showAllPatients();
-                break;
-            case 4:
-                cout << "Exiting system. Goodbye!\n";
-                break;
-            default:
-                cout << "Invalid choice. Try again.\n";
-        }
-    } while (choice != 4);
+    pq.display();
+
+    cout << "Top element: " << pq.peek() << endl;
+
+    pq.pop();
+    pq.display();
+
+    pq.pop();
+    pq.display();
 
     return 0;
 }
