@@ -1,3 +1,6 @@
+/*Implementation of a Priority Queue  • Develop a priority queue where elements are dequeued based on priority rather than insertion order.  • Support operations such as insertion, deletion, and display
+Roll no:: 23304
+Name = Shantanu Choudhari*/
 #include <iostream>
 #include <string>
 
@@ -140,3 +143,48 @@ int main() {
 
     return 0;
 }
+/*output
+
+Hospital Management System Menu:
+1. Add Patient
+2. Treat Patient
+3. Show All Patients
+4. Exit
+Enter your choice: 1
+Enter patient name: shantanu
+Enter patient priority (higher number = higher priority): 3
+Patient added successfully.
+
+Hospital Management System Menu:
+1. Add Patient
+2. Treat Patient
+3. Show All Patients
+4. Exit
+Enter your choice: 1
+Enter patient name: xyz
+Enter patient priority (higher number = higher priority): 1
+Patient added successfully.
+
+Hospital Management System Menu:
+1. Add Patient
+2. Treat Patient
+3. Show All Patients
+4. Exit
+Enter your choice: 2
+Treating patient: shantanu (Priority: 3)
+
+Hospital Management System Menu:
+1. Add Patient
+2. Treat Patient
+3. Show All Patients
+4. Exit
+Enter your choice: 3
+Current Patients in Queue:
+  (Priority: -1)
+
+Hospital Management System Menu:
+1. Add Patient
+2. Treat Patient
+3. Show All Patients
+4. Exit
+Enter your choice: */
