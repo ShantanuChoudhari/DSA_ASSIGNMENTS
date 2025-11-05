@@ -1,3 +1,6 @@
+/*Develop a hashing-based system for securely storing user credentials, where usernames act as keys and hashed passwords as values. Implement and demonstrate collision handling using: • Chaining (Array-based collision resolution) • Open Addressing (Linear or Quadratic Probing without chaining) 
+Roll no 23304
+name = shantanu choudhari*/
 #include <iostream>
 #include <string>
 using namespace std;
@@ -114,3 +117,39 @@ int main() {
 
     return 0;
 }
+/*
+1. Insert User
+2. Search User
+3. Display Table
+4. Exit
+Enter choice: 1
+Enter username: shantanu
+Enter roll_number: 23304
+ User 'shantanu' inserted at index 6, position 0
+
+1. Insert User
+2. Search User
+3. Display Table
+4. Exit
+Enter choice: 1
+Enter username: paritosh
+Enter roll_number: paritosh
+ User 'paritosh' inserted at index 4, position 0
+
+1. Insert User
+2. Search User
+3. Display Table
+4. Exit
+Enter choice: 3
+
+--- HASH TABLE (Array Chaining) ---
+[0] -> Empty
+[1] -> Empty
+[2] -> Empty
+[3] -> Empty
+[4] -> (paritosh, paritosh) 
+[5] -> Empty
+[6] -> (shantanu, 23304) 
+[7] -> Empty
+[8] -> Empty
+[9] -> Empty*/
