@@ -1,3 +1,6 @@
+/*Implementation of a Double-Ended Queue (Deque)  • Implement a double-ended queue where insertion and deletion can happen from both ends.  • Support operations such as enqueue front, enqueue rear, deque front, dequeue rear
+Roll no:23304
+Name = Shantanu Choudhari*/
 #include <iostream>
 using namespace std;
 
@@ -146,3 +149,36 @@ int main() {
 
     return 0;
 }
+
+/*
+=== DEQUE MENU ===
+1. Insert Front
+2. Insert Rear
+3. Delete Front
+4. Delete Rear
+5. Display
+6. Exit
+Enter choice: 1
+Enter value: 3
+Inserted 3 at front
+
+=== DEQUE MENU ===
+1. Insert Front
+2. Insert Rear
+3. Delete Front
+4. Delete Rear
+5. Display
+6. Exit
+Enter choice: 2
+Enter value: 4
+Inserted 4 at rear
+
+=== DEQUE MENU ===
+1. Insert Front
+2. Insert Rear
+3. Delete Front
+4. Delete Rear
+5. Display
+6. Exit
+Enter choice: 5
+Deque elements: 3 4 */
