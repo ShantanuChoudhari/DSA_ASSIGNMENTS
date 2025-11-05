@@ -1,3 +1,7 @@
+/*
+Problem Statement: Department maintains student database. The file contains roll number, name, division and address. Implement a CPP program to - 1. Create a sequential file to store and maintain student data.  2. It should allow the user to add and delete information of students.  3. Display information of particular student.  i. If the student record does not exist an appropriate message is displayed.  ii. If student record is found it should display the student details. 
+roll no 23304
+name = shantanu choudhari*/
 #include<iostream>
 #include<fstream>
 #include<string>
@@ -174,4 +178,5 @@ void deleterecord(){
     if(!flag){
         cout<<"\n entry not found in the set\n";
     }
+
 }
