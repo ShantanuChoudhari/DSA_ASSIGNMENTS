@@ -73,7 +73,20 @@ void displayTable() {
         
     }
 }
-
+void deleteuser(string name){
+    int idx = hashfunction(name);
+    for(int i=0;i<chain;i++){
+        if(username[idx][i]==name){
+            cout<<"found and rmoved\n";
+        }
+        for(int j=i;j<chain-1;j++){
+            username[idx][j] = username[idx][j+1];
+            password[idx][j] = password[idx][j+1];
+        }
+        username[idx][chain-1]="";
+        password[idx][chain-1]="";
+    }
+}
 int main() {
     int choice;
     string name, pass;
